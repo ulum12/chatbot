@@ -2,8 +2,7 @@
 <img src="https://s3.jagoanstorage.com/aditia-storage/asset/logo/analisaPenjualan.png" width="200">
 </p>
 
-## Aplikasi Analisa Penjualan
-(Menggunakan metode apriori)
+## Aplikasi Chatbot Telegram
 
 <strong>Instalasi</strong>
 
