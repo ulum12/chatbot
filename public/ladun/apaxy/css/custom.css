@@ -1,0 +1,18 @@
+.bg-pattern{
+	background: #d7e4ec !important;
+}
+
+.dz-size{
+	display: none;
+}
+
+.dz-progress{
+	display: none;
+}
+
+.dz-filename{
+	margin-top: 20px;
+}
+.dropzone .dz-preview{
+	margin: 12px !important;
+}
