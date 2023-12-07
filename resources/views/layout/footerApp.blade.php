@@ -1,7 +1,7 @@
 <footer class="footer">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-12 text-sm-right">
+            <div class="col-sm-12 text-sm-center">
                 <?php echo date('Y') ?> © Aplikasi Chat Bot.
             </div>
         </div>

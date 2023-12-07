@@ -11,11 +11,16 @@ use App\Http\Controllers\C_Apriori;
 use App\Http\Controllers\C_Laporan;
 use App\Http\Controllers\C_User;
 use App\Http\Middleware\CheckStatus;
+use App\Http\Controllers\BotManController;
 
 Route::get('/', [C_Auth::class, 'loginPage']);
 Route::post('/auth/login/proses', [C_Auth::class, 'loginProses']);
 Route::get('/auth/logout', [C_Auth::class, 'logout']);
 Route::get('/katalog', [C_Produk::class, 'katalogPage']);
+Route::get('/katalog/{id}', [C_Produk::class, 'katalogDetailPage']);
+
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
+
 Route::middleware([CheckStatus::class])->group(function(){
 
 	Route::get('/dashboard',[C_Dashboard::class, 'dashboard']);

@@ -38,21 +38,14 @@
 					    </div>
                     </div>
                     <div class="bottom-wrap">
-					    <div class="container mt-2 flex">
-                            <a class=" mr-1" title="Tiktok Shop" href="{{$product->link_tiktokshop}}" target="_blank">
-                                <img src="https://iili.io/H4tFfrG.png" height="30px">
-                            </a>
-                            <a class=" mr-1" title="Shopee" href="{{$product->link_shopee}}" target="_blank">
-                                <img src="https://iili.io/H4tFY2j.png" height="30px">
-                            </a>
-                            <a class=" mr-1" title="Chat Telegram" href="https://t.me/NewBotKatalog_bot?start=true" target="_blank">
-                                <img src="https://iili.io/H4tFWEg.png" height="30px">
+					    <div class="container padding-y">
+                            <a class="block btn-sm " title="Order" href="{{$product->link_shopee}}" target="_blank">
+                                <img src="https://iili.io/JIjzCib.png" height="35px"> 
                             </a>
 					    </div>
-					    <div class="container padding-y text-right">
-                            <a class="block btn btn-info btn-sm " title="Order" href="{{$product->link_shopee}}" target="_blank">
-                                <i class="mdi mdi-cart"></i>
-                                Order 
+					    <div class="container my-3 mx-2  text-right">
+                            <a class="block btn btn-success btn-sm " title="Order" href="/katalog/{{$product->id}}">
+                                <i class="mdi mdi-eye"></i> Detail
                             </a>
 					    </div>
                     </div>
@@ -62,9 +55,32 @@
                 <p>No Products found .</p>
             @endforelse
     	</div>
+
 	</div>
 </section>
 @include('layout.footerApp')
+
+<script>
+
+    // var botmanWidget = {
+
+    //     aboutText: '',
+
+    //     introMessage: " Hi! I'm bot katalog."
+
+    // };
+
+    var botmanWidget = {
+	    title:'Katalog Bot',
+	    introMessage: 'Hallo, Selamat datang di toko kami. Apakah ada yang bisa kami bantu ?',
+	    mainColor:'#303030',
+	    aboutText:'',
+	    bubbleBackground:'#303030',
+	    headerTextColor: '#fff',
+	};
+
+</script>
+<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 <style type="text/css">
 	.flex{
 		display: flex;

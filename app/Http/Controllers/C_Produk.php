@@ -38,6 +38,19 @@ class C_Produk extends Controller
         return view('main.produk.katalog', $dr);
     }
 
+    public function katalogDetailPage($id)
+    {
+        $dataProduk = M_Produk::where('id', $id) -> first();
+        $dataProduk->foto = DB::table('tbl_produk_image')
+                                ->select('*')
+                                ->where('produk_uuid', $dataProduk->uuid)
+                                ->get();
+                                
+        $dr = ['dataProduk' => $dataProduk];
+
+        return view('main.produk.katalogDetail', $dr);
+    }
+
     public function prosesTambahProduk(Request $request)
     {
         // {'nama':nama, 'harga':harga, 'kategori':kategori}
