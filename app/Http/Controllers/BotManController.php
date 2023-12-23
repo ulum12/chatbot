@@ -59,7 +59,7 @@ class BotManController extends Controller
                 if($matches[1]){
                     $this->id = $matches[1][0];
                 }
-                
+
                 $this->askProduk($botman);
 
             }else{
@@ -126,7 +126,7 @@ class BotManController extends Controller
 
                     // Create Total
                     $Nquestion = new M_Total_Pertanyaan();
-                    $Nquestion -> barang_id = $id;
+                    $Nquestion -> produk_id = $id;
                     $Nquestion -> liked = $answer;
                     $Nquestion -> save();
 
@@ -153,7 +153,7 @@ class BotManController extends Controller
                 } else if ($answer == '0') {
                     // Create Total
                     $Nquestion = new M_Total_Pertanyaan();
-                    $Nquestion -> barang_id = $id;
+                    $Nquestion -> produk_id = $id;
                     $Nquestion -> liked = $answer;
                     $Nquestion -> save();
 

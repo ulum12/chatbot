@@ -71,6 +71,7 @@ class C_Produk extends Controller
         $produk -> warna = $request -> warna;
         $produk -> bahan = $request -> bahan;
         $produk -> size = $request -> size;
+        $produk -> furing = $request -> furing;
         $produk -> berat = $request -> berat;
         $produk -> penutup = $request -> penutup;
         $produk -> status = "1";
@@ -93,6 +94,7 @@ class C_Produk extends Controller
             'warna' => $request -> warna,
             'bahan' => $request -> bahan,
             'size' => $request -> size,
+            'furing' => $request -> furing,
             'berat' => $request -> berat,
             'penutup' => $request -> penutup,
             'stok' => $request -> stok,

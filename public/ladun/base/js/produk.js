@@ -41,6 +41,7 @@ var appProduk = new Vue({
             let ukuran = document.querySelector("#txtUkuranEdit").value;
             let berat = document.querySelector("#txtBeratEdit").value;
             let penutup = document.querySelector("#txtPenutupEdit").value;
+            let furing = document.querySelector("#txtFuringEdit").value;
             let link_shopee = document.querySelector("#txtLink_shopeeEdit").value;
             let link_tiktokshop = document.querySelector("#txtLink_tiktokshopEdit").value;
             let deskripsi = document.querySelector("#txtDescriptionEdit").value;
@@ -52,6 +53,7 @@ var appProduk = new Vue({
                 'warna':warna,
                 'bahan':bahan,
                 'size':ukuran,
+                'furing':furing,
                 'berat':berat,
                 'penutup':penutup,
                 'stok':stok,
@@ -122,6 +124,7 @@ function editProduk(idProduk)
         document.querySelector("#txtBahanEdit").value = res.data.bahan;
         document.querySelector("#txtUkuranEdit").value = res.data.size;
         document.querySelector("#txtBeratEdit").value = res.data.berat;
+        document.querySelector("#txtFuringEdit").value = res.data.furing;
         document.querySelector("#txtPenutupEdit").value = res.data.penutup;
         document.querySelector("#txtStokEdit").value = res.data.stok;
         document.querySelector("#txtLink_shopeeEdit").value = res.data.link_shopee;
@@ -209,6 +212,7 @@ function prosesTambahProduk()
     let warna = document.querySelector("#txtWarna").value;
     let bahan = document.querySelector("#txtBahan").value;
     let ukuran = document.querySelector("#txtUkuran").value;
+    let furing = document.querySelector("#txtFuring").value;
     let berat = document.querySelector("#txtBerat").value;
     let penutup = document.querySelector("#txtPenutup").value;
     let harga = document.querySelector("#txtHarga").value;
@@ -223,6 +227,7 @@ function prosesTambahProduk()
             'bahan':bahan, 
             'size':ukuran, 
             'berat':berat, 
+            'furing':furing, 
             'penutup':penutup, 
             'harga':harga, 
             'stok':stok, 

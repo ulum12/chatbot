@@ -46,6 +46,10 @@
                     <label for="company">Penutup</label>
                     <input type="text" class="form-control" id="txtPenutup">
                 </div>
+                <div class="form-group">
+                    <label for="company">Furing</label>
+                    <input type="text" class="form-control" id="txtFuring">
+                </div>
 
                 <div class="form-group">
                     <label for="company">Link Shopee</label>
@@ -116,6 +120,10 @@
                     <label for="company">Penutup</label>
                     <input type="text" class="form-control" id="txtPenutupEdit">
                 </div>
+                <div class="form-group">
+                    <label for="company">Furing</label>
+                    <input type="text" class="form-control" id="txtFuringEdit">
+                </div>
 
 
                 <div class="form-group">
@@ -129,8 +137,6 @@
                 <div class="form-group">
                     <label for="company">Deskripsi</label>
                     <textarea type="text" class="form-control" id="txtDescriptionEdit" />
-                </div>
-                <div>
                 </div>
             </div>
             <div class="modal-footer bg-whitesmoke br">

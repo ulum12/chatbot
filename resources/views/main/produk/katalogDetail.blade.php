@@ -82,6 +82,10 @@
 									  <button type="button" class="btn btn-default">Penutup</button>
 									  <button type="button" class="btn btn-default"> : <b>{{$dataProduk->penutup}}</b></button>
 									</div>
+			                    	<div class="btn-group" role="group">
+									  <button type="button" class="btn btn-default">Furing</button>
+									  <button type="button" class="btn btn-default"> : <b>{{$dataProduk->furing}}</b></button>
+									</div>
 								</div>
 	                            <a class="block btn-sm " title="Order" href="{{$dataProduk->link_shopee}}" target="_blank">
 	                                <img src="https://iili.io/JIjzCib.png" height="35px"> 
