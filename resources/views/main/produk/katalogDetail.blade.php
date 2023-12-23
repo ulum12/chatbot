@@ -50,7 +50,7 @@
 			                </div>
 			                <div class="col-lg-7 col-md-7 col-sm-6">
 			                    <h4 class="box-title mt-4">Product description</h4>
-			                    <h6>Stok : {{$dataProduk->stok}}</h6>
+			                    <h6>Stok : {{$dataProduk->stok === '1' ? 'Ready' : 'Kosong' }}</h6>
 			                    <p>{{$dataProduk->deskripsi}}</p>
 			                    <h4 class="mt-2">
 			                    	Rp. {{$dataProduk->harga}} 

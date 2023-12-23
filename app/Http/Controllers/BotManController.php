@@ -48,7 +48,9 @@ class BotManController extends Controller
             preg_match_all("/\((.*?)\)/", $message, $matches);
 
             // Extract the matched strings from the result
-            $this->id = $matches[1][0];
+            if($matches[1]){
+                $this->id = $matches[1][0];
+            }
 
             $chatData = M_Chatbot::where('pertanyaan', 'like', '%'.$message.'%') -> first();
 
@@ -146,7 +148,6 @@ class BotManController extends Controller
                         }
 
                     });
-
                 } else if ($answer == '0') {
                     // Create Total
                     $Nquestion = new M_Total_Pertanyaan();
@@ -156,8 +157,12 @@ class BotManController extends Controller
 
                     $botman->say('Baik Terimakasih');
                 }
+
             } else {
-                $botman->say('Baik Terimakasih');
+                $chatData = M_Chatbot::where('pertanyaan', 'like', '%'.$message.'%') -> first();
+                if($chatData){
+                    $botman->reply($chatData['jawaban']);
+                }
             }
         });
     }
