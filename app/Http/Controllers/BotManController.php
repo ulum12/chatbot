@@ -44,14 +44,6 @@ class BotManController extends Controller
 
             $isProduk = strpos($message, 'Nama Produk');
 
-            // Use preg_match_all to find all occurrences of strings within parentheses
-            preg_match_all("/\((.*?)\)/", $message, $matches);
-
-            // Extract the matched strings from the result
-            if($matches[1]){
-                $this->id = $matches[1][0];
-            }
-
             $chatData = M_Chatbot::where('pertanyaan', 'like', '%'.$message.'%') -> first();
 
             if ($message == 'hi') {
@@ -60,11 +52,21 @@ class BotManController extends Controller
 
             }else if ($isProduk) {
 
+                // Use preg_match_all to find all occurrences of strings within parentheses
+                preg_match_all("/\((.*?)\)/", $message, $matches);
+
+                // Extract the matched strings from the result
+                if($matches[1]){
+                    $this->id = $matches[1][0];
+                }
+                
                 $this->askProduk($botman);
 
             }else{
                 if($chatData){
                     $botman->reply($chatData['jawaban']);
+                }else{
+                    $botman->reply('Maaf, Minbot tidak mengerti apa yang Anda tanyakan, mohon masukkan pertanyaan lain mengenai stock, produk, lokasi, packaging :)');
                 }
             }
 
@@ -162,6 +164,8 @@ class BotManController extends Controller
                 $chatData = M_Chatbot::where('pertanyaan', 'like', '%'.$message.'%') -> first();
                 if($chatData){
                     $botman->reply($chatData['jawaban']);
+                }else{
+                    $botman->reply('Maaf, Minbot tidak mengerti apa yang Anda tanyakan, mohon masukkan pertanyaan lain mengenai stock, produk, lokasi, packaging :)');
                 }
             }
         });
