@@ -24,7 +24,13 @@ class C_Produk extends Controller
 
     public function katalogPage()
     {
-        $dataProduk = M_Produk::all();
+
+        $q = isset($_GET['q']) ? $_GET['q'] : null;
+
+        $dataProduk = DB::table('tbl_produk')
+                        ->select('*')
+                        ->where('nama_produk', 'like', '%'.$q.'%')
+                        ->get();
         $i = 0;
         foreach ($dataProduk as $row) {
             $dataProduk[$i]->foto = DB::table('tbl_produk_image')
@@ -62,6 +68,11 @@ class C_Produk extends Controller
         $produk -> link_shopee = $request -> link_shopee;
         $produk -> link_tiktokshop = $request -> link_tiktokshop;
         $produk -> deskripsi = $request -> deskripsi;
+        $produk -> warna = $request -> warna;
+        $produk -> bahan = $request -> bahan;
+        $produk -> size = $request -> size;
+        $produk -> berat = $request -> berat;
+        $produk -> penutup = $request -> penutup;
         $produk -> status = "1";
         $produk -> save();
         $dr = ['status' => 'sukses'];
@@ -79,6 +90,11 @@ class C_Produk extends Controller
         M_Produk::where('uuid', $request -> kdProduk) -> update([
             'nama_produk' => $request -> nama,
             'harga' => $request -> harga,
+            'warna' => $request -> warna,
+            'bahan' => $request -> bahan,
+            'size' => $request -> size,
+            'berat' => $request -> berat,
+            'penutup' => $request -> penutup,
             'stok' => $request -> stok,
             'link_shopee' => $request -> link_shopee,
             'link_tiktokshop' => $request -> link_tiktokshop,

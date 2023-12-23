@@ -36,11 +36,28 @@ var appProduk = new Vue({
             let nama = document.querySelector("#txtNamaProdukEdit").value;
             let harga = document.querySelector("#txtHargaEdit").value;
             let stok = document.querySelector("#txtStokEdit").value;
+            let warna = document.querySelector("#txtWarnaEdit").value;
+            let bahan = document.querySelector("#txtBahanEdit").value;
+            let ukuran = document.querySelector("#txtUkuranEdit").value;
+            let berat = document.querySelector("#txtBeratEdit").value;
+            let penutup = document.querySelector("#txtPenutupEdit").value;
             let link_shopee = document.querySelector("#txtLink_shopeeEdit").value;
             let link_tiktokshop = document.querySelector("#txtLink_tiktokshopEdit").value;
             let deskripsi = document.querySelector("#txtDescriptionEdit").value;
             
-            let ds = {'kdProduk':kdProduk, 'nama':nama, 'harga':harga, 'stok':stok, 'link_shopee':link_shopee, 'link_tiktokshop':link_tiktokshop, 'deskripsi':deskripsi}
+            let ds = {
+                'kdProduk':kdProduk,
+                'nama':nama,
+                'harga':harga,
+                'warna':warna,
+                'bahan':bahan,
+                'size':ukuran,
+                'berat':berat,
+                'penutup':penutup,
+                'stok':stok,
+                'link_shopee':link_shopee,
+                'link_tiktokshop':link_tiktokshop,
+                'deskripsi':deskripsi}
             axios.post(rProsesUpdateProduk, ds).then(function(res){
                 $("#modalEditProduk").modal("hide");
                 setTimeout(function(){
@@ -101,6 +118,11 @@ function editProduk(idProduk)
         $("#modalEditProduk").modal("show");
         document.querySelector("#txtNamaProdukEdit").value = res.data.nama_produk;
         document.querySelector("#txtHargaEdit").value = res.data.harga;
+        document.querySelector("#txtWarnaEdit").value = res.data.warna;
+        document.querySelector("#txtBahanEdit").value = res.data.bahan;
+        document.querySelector("#txtUkuranEdit").value = res.data.size;
+        document.querySelector("#txtBeratEdit").value = res.data.berat;
+        document.querySelector("#txtPenutupEdit").value = res.data.penutup;
         document.querySelector("#txtStokEdit").value = res.data.stok;
         document.querySelector("#txtLink_shopeeEdit").value = res.data.link_shopee;
         document.querySelector("#txtLink_tiktokshopEdit").value = res.data.link_tiktokshop;
@@ -184,12 +206,29 @@ function UploadProduk(idProduk)
 function prosesTambahProduk()
 {
     let nama = document.querySelector("#txtNamaProduk").value;
+    let warna = document.querySelector("#txtWarna").value;
+    let bahan = document.querySelector("#txtBahan").value;
+    let ukuran = document.querySelector("#txtUkuran").value;
+    let berat = document.querySelector("#txtBerat").value;
+    let penutup = document.querySelector("#txtPenutup").value;
     let harga = document.querySelector("#txtHarga").value;
     let stok = document.querySelector("#txtStok").value;
+
     let link_shopee = document.querySelector("#txtLink_shopee").value;
     let link_tiktokshop = document.querySelector("#txtLink_tiktokshop").value;
     let deskripsi = document.querySelector("#txtDescription").value;
-    let ds = {'nama':nama, 'harga':harga, 'stok':stok, 'link_shopee':link_shopee, 'link_tiktokshop':link_tiktokshop, 'deskripsi':deskripsi}
+    let ds = {
+            'nama':nama, 
+            'warna':warna, 
+            'bahan':bahan, 
+            'size':ukuran, 
+            'berat':berat, 
+            'penutup':penutup, 
+            'harga':harga, 
+            'stok':stok, 
+            'link_shopee':link_shopee, 
+            'link_tiktokshop':link_tiktokshop, 
+            'deskripsi':deskripsi}
     axios.post(rProsesTambahProduk, ds).then(function(res){
         $("#modalTambahProduk").modal("hide");
         setTimeout(function(){

@@ -31,7 +31,11 @@
 						    			if
 						    		{{$i++}}
 						            @empty
-						                <p>No Products found .</p>
+				                    	<img 
+				                    		src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png" 
+				                    		alt="" 
+				                    		width="100%"
+				                    	/>
 						            @endforelse
 								  </div>
 								  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -48,13 +52,41 @@
 			                    <h4 class="box-title mt-4">Product description</h4>
 			                    <h6>Stok : {{$dataProduk->stok}}</h6>
 			                    <p>{{$dataProduk->deskripsi}}</p>
-			                    <h4 class="mt-5">
+			                    <h4 class="mt-2">
 			                    	Rp. {{$dataProduk->harga}} 
 			                    </h4>
+			                    <div class="my-2">
+			                    	<div class="btn-group" role="group">
+									  <button type="button" class="btn btn-default">Warna</button>
+									  <button type="button" class="btn btn-default"> : <b>{{$dataProduk->warna}}</b></button>
+									</div>
+								</div>
+			                    <div class="my-2">
+			                    	<div class="btn-group" role="group">
+									  <button type="button" class="btn btn-default">Bahan</button>
+									  <button type="button" class="btn btn-default"> : <b>{{$dataProduk->bahan}}</b></button>
+									</div>
+								</div>
+			                    <div class="my-2">
+			                    	<div class="btn-group" role="group">
+									  <button type="button" class="btn btn-default">Ukuran</button>
+									  <button type="button" class="btn btn-default"> : <b>{{$dataProduk->size}}</b></button>
+									</div>
+			                    	<div class="btn-group" role="group">
+									  <button type="button" class="btn btn-default">Berat</button>
+									  <button type="button" class="btn btn-default"> : <b>{{$dataProduk->berat}}</b></button>
+									</div>
+			                    </div>
+			                    <div class="my-2">
+			                    	<div class="btn-group" role="group">
+									  <button type="button" class="btn btn-default">Penutup</button>
+									  <button type="button" class="btn btn-default"> : <b>{{$dataProduk->penutup}}</b></button>
+									</div>
+								</div>
 	                            <a class="block btn-sm " title="Order" href="{{$dataProduk->link_shopee}}" target="_blank">
 	                                <img src="https://iili.io/JIjzCib.png" height="35px"> 
 	                            </a>
-			                    <button class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Chat Penjual">
+			                    <button class="btn btn-dark btn-rounded" id="btn-chat" data-toggle="tooltip" title="" data-original-title="Chat Penjual">
 			                        <i class="mdi mdi-chat"></i>
 			                    </button>
 			                </div>
@@ -67,19 +99,22 @@
 </section>
 @include('layout.footerApp')
 
+<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 <script>
 
-    // var botmanWidget = {
+	$('#btn-chat').click(function(){
+		let data = <?php echo $dataProduk; ?>;
+		let foto = data.foto.length > 0 ? '../'+data.foto[0].path : 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png';
+		$('.desktop-closed-message-avatar').click();
 
-    //     aboutText: '',
-
-    //     introMessage: " Hi! I'm bot katalog."
-
-    // };
+		let text = `<img src="${foto}" width="200px"/> <p>Nama Produk : <b>${data.nama_produk} (${data.id})</b></p>`;
+		setTimeout(function() {
+			botmanChatWidget.say(text);
+		}, 3000); // 3 seconds delay
+	});
 
     var botmanWidget = {
 	    title:'Katalog Bot',
-	    introMessage: 'Hallo, Selamat datang di toko kami. Apakah ada yang bisa kami bantu ?',
 	    mainColor:'#303030',
 	    aboutText:'',
 	    bubbleBackground:'#303030',
@@ -87,8 +122,10 @@
 	};
 
 </script>
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 <style type="text/css">
+	.desktop-closed-message-avatar{
+		display: none !important;
+	}
 	.flex{
 		display: flex;
 		padding: 0px 8%;

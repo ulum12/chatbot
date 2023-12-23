@@ -1,6 +1,6 @@
 <!-- modal tambah produk  -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modalTambahProduk">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Tambah Produk</h5>
@@ -25,6 +25,28 @@
                         <option value="0">Kosong</option>
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="company">Warna</label>
+                    <input type="text" class="form-control" id="txtWarna">
+                </div>
+                <div class="form-group">
+                    <label for="company">Bahan</label>
+                    <input type="text" class="form-control" id="txtBahan">
+                </div>
+                <div class="form-group">
+                    <label for="company">Ukuran</label>
+                    <input type="text" class="form-control" id="txtUkuran">
+                </div>
+                <div class="form-group">
+                    <label for="company">Berat</label>
+                    <input type="text" class="form-control" id="txtBerat">
+                </div>
+                <div class="form-group">
+                    <label for="company">Penutup</label>
+                    <input type="text" class="form-control" id="txtPenutup">
+                </div>
+
                 <div class="form-group">
                     <label for="company">Link Shopee</label>
                     <input type="text" class="form-control" id="txtLink_shopee">
@@ -48,7 +70,7 @@
 
 <!-- modal edit produk  -->
 <div class="modal fade" tabindex="-1" role="dialog" id="modalEditProduk">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Edit Produk</h5>
@@ -73,6 +95,29 @@
                         <option value="0">Kosong</option>
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="company">Warna</label>
+                    <input type="text" class="form-control" id="txtWarnaEdit">
+                </div>
+                <div class="form-group">
+                    <label for="company">Bahan</label>
+                    <input type="text" class="form-control" id="txtBahanEdit">
+                </div>
+                <div class="form-group">
+                    <label for="company">Ukuran</label>
+                    <input type="text" class="form-control" id="txtUkuranEdit">
+                </div>
+                <div class="form-group">
+                    <label for="company">Berat</label>
+                    <input type="text" class="form-control" id="txtBeratEdit">
+                </div>
+                <div class="form-group">
+                    <label for="company">Penutup</label>
+                    <input type="text" class="form-control" id="txtPenutupEdit">
+                </div>
+
+
                 <div class="form-group">
                     <label for="company">Link Shopee</label>
                     <input type="text" class="form-control" id="txtLink_shopeeEdit">

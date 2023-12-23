@@ -1,7 +1,7 @@
 @include('layout.headerAuth')
 <section class="section-pagetop bg-white flex">
     <div class="container clearfix padding-y">
-    	<h3>Product Katalog</h3>
+    	<h3>Produk Katalog</h3>
     </div>
     <!-- <div class="container clearfix padding-y text-right mt-1">
     	<a href="/">Login</a>
@@ -9,6 +9,20 @@
 </section>
 <section class="section-content bg padding-y">
     <div class="container clearfix">
+    	<div class="row d-flex text-right">
+    		<div class="col-lg-8 my-3">
+    		</div>
+    		<div class="col-lg-4 my-3">
+				<div class="input-group mb-3">
+				  <input type="text" class="form-control" id="search" placeholder="Search Nama Produk">
+				  <div class="input-group-append">
+					  <button type="button" class="btn btn-primary" id="btn-search" data-mdb-ripple-init>
+					    <i class="fas fa-search"></i>
+					  </button>
+				  </div>
+				</div>
+    		</div>
+    	</div>
     	<div class="row">
     		@forelse($dataProduk as $product)
     		<div class="col-lg-3">
@@ -61,14 +75,19 @@
 @include('layout.footerApp')
 
 <script>
+	$( document ).ready(function() {
+	    var qParamValue = getUrlParameter('q');
 
-    // var botmanWidget = {
+	    if(qParamValue){
+	    	$('#search').val(qParamValue);
+	    }
+	});
 
-    //     aboutText: '',
+	$('#btn-search').click(function(){
+	    let q = $('#search').val();
 
-    //     introMessage: " Hi! I'm bot katalog."
-
-    // };
+		window.location.assign(`/katalog?q=${q}`);
+	});
 
     var botmanWidget = {
 	    title:'Katalog Bot',
@@ -79,6 +98,12 @@
 	    headerTextColor: '#fff',
 	};
 
+	function getUrlParameter(name) {
+	    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+	    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+	    var results = regex.exec(location.search);
+	    return results === null ? undefined : decodeURIComponent(results[1].replace(/\+/g, ' '));
+	}
 </script>
 <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 <style type="text/css">
