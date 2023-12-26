@@ -36,6 +36,7 @@
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body data-topbar="dark" data-layout="horizontal">
@@ -49,7 +50,7 @@
                 <div class="d-flex">
                     <!-- LOGO -->
                     <div class="navbar-brand-box">
-                        <a href="index.html" class="logo logo-dark">
+                        <a href="/" class="logo logo-dark">
                             <span class="text-white logo-sm">
                                 CB
                             </span>
@@ -58,7 +59,7 @@
                             </span>
                         </a>
 
-                        <a href="index.html" class="logo text-white logo-light">
+                        <a href="/" class="logo text-white logo-light">
                             <span class="text-white logo-sm">
                                 CB
                             </span>
@@ -122,7 +123,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="javascript:void(0)" onclick="renderPage('app/laporan/data', 'Laporan Apriori')">
+                                <a class="nav-link text-white" href="javascript:void(0)" onclick="renderPage('app/laporan/data', 'Laporan')">
                                     <i class="mdi mdi-file-document-box-search mr-2"></i>Laporan
                                 </a>
                             </li>

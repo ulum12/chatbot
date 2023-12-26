@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\M_Produk;
 use App\Models\M_Penjualan;
+use App\Models\M_Laporan;
 // use Auth;
 
 class C_Dashboard extends Controller
@@ -19,19 +20,27 @@ class C_Dashboard extends Controller
     {
         return view('main.dashboard');
     }
+
     public function berandaPage()
     {
         $totalProduk = M_Produk::count();
-        $totalPenjualan = M_Penjualan::count();
-        $totalHarga = M_Produk::sum('harga');
-        $transaksiTerakhir = M_Penjualan::distinct() -> take (7) -> get(['no_faktur']);
-        $rataRata = $totalHarga / $totalProduk;
+        $totalPertanyaan = M_Laporan::count();
+        $totalLike = M_Laporan::where('liked', 1)->count();
+        $totalnotLike = M_Laporan::where('liked', 0)->count();
+
+        $dataChart = [
+            'labels' => ['Total Pertanyaan', 'Tertarik', 'Tidak Tertarik'],
+            'data' => [$totalPertanyaan, $totalLike, $totalnotLike],
+        ];
+        
         $dr = [
             'totalProduk' => $totalProduk,
-            'totalPenjualan' => $totalPenjualan,
-            'rataRata' => $rataRata,
-            'transaksiTerakhir' => $transaksiTerakhir
+            'totalPertanyaan' => $totalPertanyaan,
+            'totalLike' => $totalLike,
+            'totalnotLike' => $totalnotLike,
+            'dataChart' => $dataChart
         ];
+
         return view('main.berandaPage', $dr);
     }
 

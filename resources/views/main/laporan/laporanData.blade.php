@@ -1,35 +1,40 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-body">
-            <h4 class="header-title">Laporan Analisa</h4>
+            <div class="d-flex justify-content-between">
+                <p class="card-title-desc">
+                    <button class="btn btn-primary waves-effect" id="btn-download">
+                        <i class="mdi mdi-file-excel"></i>
+                        Download Excel
+                    </button>
+                </p>
+                <div class="form-group">
+                    <select type="text" class="form-control" id="filterDate" >
+                        <option value="1">Harian</option>
+                        <option value="2">Bulanan</option>
+                        <option value="3">Tahunan</option>
+                    </select>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table mb-0 table-hover" id="tblLaporan">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Kd Pengujian</th>
-                            <th>Nama Penguji</th>
-                            <th>Waktu Pengujian</th>
-                            <th>Support</th>
-                            <th>Confidence</th>
-                            <th>Total Pola Produk</th>
-                            <th>Aksi</th>
+                            <th>Nama Produk</th>
+                            <th>Sering ditanyakan</th>
+                            <th>Disukai</th>
+                            <th>Kurang disukai</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($dataPengujian as $pengujian)
+                    @foreach($dataPengujian as $laporan)
                     <tr>
                         <td>{{ $loop -> iteration }}</td>
-                        <td>{{ substr($pengujian -> kd_pengujian, 0, 5) }}</td>
-                        <td>{{ $pengujian -> nama_penguji }}</td>
-                        <td>{{ $pengujian -> created_at }}</td>
-                        <td>{{ $pengujian -> min_supp }}</td>
-                        <td>{{ $pengujian -> min_confidence }}</td>
-                        <td>{{ $pengujian -> totalPolaProduk($pengujian -> kd_pengujian, $pengujian -> min_confidence) }}</td>
-                        <td>
-                            <a href="javascript:void(0)" onclick="keDetail('{{ $pengujian -> kd_pengujian }}')" class="btn btn-primary btn-sm">Detail</a>&nbsp;
-                            <a href="{{ url('/apriori/analisa/cetak/') }}/{{ $pengujian -> kd_pengujian }}" target="new" class="btn btn-success btn-sm">Cetak</a>
-                        </td>
+                        <td>{{ $laporan -> nama_produk }}</td>
+                        <td>{{ $laporan -> total }}</td>
+                        <td>{{ $laporan -> liked }}</td>
+                        <td>{{ $laporan -> not_liked }}</td>
                     </tr>
                     @endforeach
                     </tbody>
@@ -41,11 +46,25 @@
 </div>
 
 <script>
+
+    $( document ).ready(function() {
+        let filter = <?php echo $filter ?>;
+
+        if(filter){
+            $('#filterDate').val(filter);
+        }
+    });
+
     $("#tblLaporan").dataTable();
 
-    function keDetail(kdPengujian)
-    {
-        renderPage('app/apriori/analisa/hasil/'+kdPengujian, 'Hasil Analisa');
-    }
+    $("#btn-download").click(function(){
+        var val = $('#filterDate').val();
+        window.open('/export?filter='+val);
+    });
 
+    $('#filterDate').change(function(){
+        var val = $(this).val();
+
+        renderPage(`app/laporan/data?filter=${val}`)
+    });
 </script>

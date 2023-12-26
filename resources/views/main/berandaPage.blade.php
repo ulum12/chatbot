@@ -1,23 +1,4 @@
-<!-- <div class="row">
-    <div class="col-sm-6 col-xl-3">
-        <div class="card">
-            <div class="card-body">
-                <div class="media">
-                    <div class="media-body">
-                        <h5 class="font-size-14">Total Transaksi</h5>
-                    </div>
-                    <div class="avatar-xs">
-                        <span class="avatar-title rounded-circle bg-primary">
-                            <i class="dripicons-box"></i>
-                        </span>
-                    </div>
-                </div>
-                <h4 class="m-0 align-self-center">{{ $totalPenjualan }}</h4>
-
-            </div>
-        </div>
-    </div>
-
+<div class="row">
     <div class="col-sm-6 col-xl-3">
         <div class="card">
             <div class="card-body">
@@ -42,15 +23,15 @@
             <div class="card-body">
                 <div class="media">
                     <div class="media-body">
-                        <h5 class="font-size-14">Avg. Harga Produk</h5>
+                        <h5 class="font-size-14">Total Pertanyaan</h5>
                     </div>
                     <div class="avatar-xs">
                         <span class="avatar-title rounded-circle bg-primary">
-                            <i class="dripicons-tags"></i>
+                            <i class="dripicons-box"></i>
                         </span>
                     </div>
                 </div>
-                <h4 class="m-0 align-self-center">Rp. {{ number_format($rataRata) }}</h4>
+                <h4 class="m-0 align-self-center">{{ $totalPertanyaan }}</h4>
 
             </div>
         </div>
@@ -61,7 +42,26 @@
             <div class="card-body">
                 <div class="media">
                     <div class="media-body">
-                        <h5 class="font-size-14">Total User</h5>
+                        <h5 class="font-size-14">Tertarik</h5>
+                    </div>
+                    <div class="avatar-xs">
+                        <span class="avatar-title rounded-circle bg-primary">
+                            <i class="dripicons-tags"></i>
+                        </span>
+                    </div>
+                </div>
+                <h4 class="m-0 align-self-center">{{ $totalLike }}</h4>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="font-size-14">Tidak Tertarik</h5>
                     </div>
                     <div class="avatar-xs">
                         <span class="avatar-title rounded-circle bg-primary">
@@ -69,7 +69,7 @@
                         </span>
                     </div>
                 </div>
-                <h4 class="m-0 align-self-center">1</h4>
+                <h4 class="m-0 align-self-center">{{ $totalnotLike }}</h4>
 
             </div>
         </div>
@@ -80,34 +80,38 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
+            <div class="card-title m-3">
+                <h5>Data Ketertarikan Customer</h5>
+            </div>
             <div class="card-body">
-                <h4 class="header-title mb-4">Transaksi Terakhir</h4>
-
-                <div class="table-responsive">
-                    <table class="table table-centered table-nowrap mb-0">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">ID Transaksi</th>
-                                <th scope="col">Waktu Transaksi</th>
-                                <th scope="col">Total Produk</th>
-                                <th scope="col">Nominal Transaksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($transaksiTerakhir as $tt)
-                        <tr>
-                            <td>{{ $loop -> iteration }}</td>
-                            <td>{{ substr($tt -> no_faktur, 0, 5) }}</td>
-                            <td>{{ $tt -> getCreatedAt($tt -> no_faktur) }}</td>
-                            <td>{{ $tt -> hitungTotalQt($tt -> no_faktur) }}</td>
-                            <td>{{ $loop -> iteration }}</td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
+                <canvas id="barChart"></canvas>
             </div>
         </div>
     </div>
-</div> -->
+</div>
+
+
+<!-- End Page-content -->
+<script>
+    var ctx = document.getElementById('barChart'). getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @json($dataChart['labels']),
+            datasets: [{
+                label: 'Total',
+                data: @json($dataChart['data']),
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

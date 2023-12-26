@@ -17,6 +17,7 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 
 use App\Models\M_Chatbot;
 use App\Models\M_Total_Pertanyaan;
+use App\Models\M_Produk;
 use DB;
 
 
@@ -126,7 +127,7 @@ class BotManController extends Controller
 
                     // Create Total
                     $Nquestion = new M_Total_Pertanyaan();
-                    $Nquestion -> produk_id = $id;
+                    $Nquestion -> barang_id = $id;
                     $Nquestion -> liked = $answer;
                     $Nquestion -> save();
 
@@ -134,18 +135,26 @@ class BotManController extends Controller
                         ->fallback("Unable to ask question")
                         ->callbackId("I can not understand this")
                         ->addButtons([
-                            Button::create('Stok')->value('Stok'),
-                            Button::create('Lokasi')->value('Location'),
-                            Button::create('Cara Packing')->value('Packaging'),
+                            Button::create('Stok')->value('Stok_'.$id),
+                            Button::create('Lokasi')->value('Location_'.$id),
+                            Button::create('Cara Packing')->value('Packaging_'.$id),
                         ]);
 
                     $botman->ask($question, function (Answer $answer, $botman) {
                         if ($answer->isInteractiveMessageReply()) {
-                            $botName = $answer->getText();
-                            $chatData = M_Chatbot::where('nama_bot', 'like', '%'.$botName.'%') -> first();
+
+                            $q = explode('_', $answer->getValue()) ;
+                            $answer = $q[0];
+                            $id = $q[1];
+
+                            $chatData = M_Chatbot::where('nama_bot', 'like', '%'.$answer.'%') -> first();
+                            $produkData = M_Produk::where('id', $id) -> first();
 
                             if($chatData){
                                 $botman->say($chatData['jawaban']);
+                                if($produkData['stok'] === "1"){
+                                    $botman->say("<a href='".$produkData['link_shopee']."' target='_blank'>Pesan Sekarang di Shopee</a>");
+                                }
                             }
                         }
 
@@ -153,7 +162,7 @@ class BotManController extends Controller
                 } else if ($answer == '0') {
                     // Create Total
                     $Nquestion = new M_Total_Pertanyaan();
-                    $Nquestion -> produk_id = $id;
+                    $Nquestion -> barang_id = $id;
                     $Nquestion -> liked = $answer;
                     $Nquestion -> save();
 

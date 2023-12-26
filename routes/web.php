@@ -48,6 +48,8 @@ Route::middleware([CheckStatus::class])->group(function(){
 	Route::get('/apriori/analisa/cetak/{kdPengujian}', [C_Apriori::class, 'cetakAnalisa']);
 
 	Route::get('/app/laporan/data', [C_Laporan::class, 'dataLaporan']);
+
+	Route::get('/export', [C_Laporan::class, 'export']);
 	Route::get('/app/info-aplikasi', [C_Dashboard::class, 'infoAplikasi']);
 
 	Route::get('/app/user/data', [C_User::class, 'dataUser']);
