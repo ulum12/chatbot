@@ -88,7 +88,7 @@
 									</div>
 								</div>
 	                            <a class="block btn-sm " title="Order" href="{{$dataProduk->link_shopee}}" target="_blank">
-	                                <img src="https://iili.io/JIjzCib.png" height="35px"> 
+	                                <img src="/shoope.png" height="35px"> 
 	                            </a>
 			                    <button class="btn btn-dark btn-rounded" id="btn-chat" data-toggle="tooltip" title="" data-original-title="Chat Penjual">
 			                        <i class="mdi mdi-chat"></i>

@@ -54,7 +54,7 @@
                     <div class="bottom-wrap">
 					    <div class="container padding-y">
                             <a class="block btn-sm " title="Order" href="{{$product->link_shopee}}" target="_blank">
-                                <img src="https://iili.io/JIjzCib.png" height="35px"> 
+                                <img src="/shoope.png" height="35px"> 
                             </a>
 					    </div>
 					    <div class="container my-3 mx-2  text-right">
@@ -89,14 +89,14 @@
 		window.location.assign(`/katalog?q=${q}`);
 	});
 
-    var botmanWidget = {
-	    title:'Katalog Bot',
-	    introMessage: 'Hallo, Selamat datang di toko kami. Apakah ada yang bisa kami bantu ?',
-	    mainColor:'#303030',
-	    aboutText:'',
-	    bubbleBackground:'#303030',
-	    headerTextColor: '#fff',
-	};
+    // var botmanWidget = {
+	//     title:'Katalog Bot',
+	//     introMessage: 'Hallo, Selamat datang di toko kami. Apakah ada yang bisa kami bantu ?',
+	//     mainColor:'#303030',
+	//     aboutText:'',
+	//     bubbleBackground:'#303030',
+	//     headerTextColor: '#fff',
+	// };
 
 	function getUrlParameter(name) {
 	    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
@@ -105,7 +105,7 @@
 	    return results === null ? undefined : decodeURIComponent(results[1].replace(/\+/g, ' '));
 	}
 </script>
-<script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+<!-- <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script> -->
 <style type="text/css">
 	.flex{
 		display: flex;
